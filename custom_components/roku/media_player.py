@@ -201,7 +201,7 @@ class RokuMediaPlayer(RokuEntity, MediaPlayerEntity):
     @property
     def media_channel(self) -> str | None:
         """Return the TV channel currently tuned."""
-        _LOGGER.warning("Return the TV channel currently tuned. %s %s", self.app_id, self.coordinator.data.channel )
+        _LOGGER.debug("Return the TV channel currently tuned. %s %s", self.app_id, self.coordinator.data.channel )
         if self.app_id != "779845" or self.coordinator.data.channel is None:
             return None
 

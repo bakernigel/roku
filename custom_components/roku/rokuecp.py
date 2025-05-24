@@ -149,7 +149,7 @@ class Roku:
             self._close_session = True
 
         try:
-            _LOGGER.warning("Sending request. method: %s, url: %s, data: %s, params: %s, headers: %s", method,url,data,params,headers)  
+            _LOGGER.debug("Sending request. method: %s, url: %s, data: %s, params: %s, headers: %s", method,url,data,params,headers)  
             async with timeout(self.request_timeout):
                 response = await self.session.request(
                     method,
@@ -401,7 +401,7 @@ class Roku:
 
         """
         
-        _LOGGER.warning("Tune the channel: %s ", channel )
+        _LOGGER.debug("Tune the channel: %s ", channel )
         
         await self.launch("779845", {"ch": channel})
 
