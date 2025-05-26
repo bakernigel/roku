@@ -401,9 +401,10 @@ class Roku:
 
         """
         
-        _LOGGER.debug("Tune the channel: %s ", channel )
+        _LOGGER.debug("rokuecp.py Tune the channel: %s ", channel )
         
-        await self.launch("779845", {"ch": channel})
+#        await self.launch("779845", {"ch": channel})
+        await self.literal(channel)
 
     async def _get_active_app(self) -> dict[str, Any]:
         """Retrieve active app for updates.
@@ -443,7 +444,7 @@ class Roku:
 
         if isinstance(res["apps"]["app"], dict):
             return [res["apps"]["app"]]
-
+        _LOGGER.debug("_get_apps: %s ", res["apps"]["app"])
         return res["apps"]["app"]  # type: ignore[no-any-return]
 
     async def _get_device_info(self) -> dict[str, Any]:
