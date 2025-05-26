@@ -15,8 +15,8 @@ __A Home Assistant custom Integration for Roku.__
 - Configure the Roku integration using your Roku device IP address. 
 
 ## __𝐅𝐞𝐚𝐭𝐮𝐫𝐞𝐬__
-- Provides all the same features as the existing core Roku integration.
-- Does NOT fix the channel select issue in the core integration - https://github.com/home-assistant/core/issues/133324
-- Fixes missing information from the media_player attributes for
+- Provides all the same features as the existing core Roku integration plus fixes missing information from the media_player attributes for
   media_channel and media_title
-- Only use this custom integration if you need this missing information.
+- Only use this custom integration if you need this missing information.  
+- Does NOT fix the channel select issue in the core integration - https://github.com/home-assistant/core/issues/133324
+  
