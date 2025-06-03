@@ -180,8 +180,10 @@ class RokuMediaPlayer(RokuEntity, MediaPlayerEntity):
         """Image url of current playing media."""
         if self.app_id is None or self.app_name in ("Power Saver", "Roku"):
             return None
-
-        return self.coordinator.roku.app_icon_url(self.app_id)
+        if self.app_id != "779845":
+            return self.coordinator.roku.app_icon_url(self.app_id)
+        else:
+            return self.coordinator.roku.app_icon_url("tvinput.dtv")    
 
     @property
     def app_name(self) -> str | None:
@@ -436,15 +438,7 @@ class RokuMediaPlayer(RokuEntity, MediaPlayerEntity):
             await self.coordinator.roku.launch(media_id, params)
         elif media_type == MediaType.CHANNEL:
             _LOGGER.debug("media_player.py Tune the channel %s", media_id )
-            if self.app_id != "779845":
-              _LOGGER.info("Roku - cannot tune TV channel unless app is Live TV. Current app=%s. Switching to Live TV", self.app_name)
-              await self.coordinator.roku.launch("779845")
-              _LOGGER.debug("Starting sleep")
-              await asyncio.sleep(8)
-              _LOGGER.debug("Ending sleep")
-              await self.coordinator.roku.tune(media_id)
-            else: 
-              await self.coordinator.roku.tune(media_id)
+            await self.coordinator.roku.tune(media_id)
         elif media_type == MediaType.MUSIC:
             if extra.get(ATTR_ARTIST_NAME) is None:
                 extra[ATTR_ARTIST_NAME] = "Home Assistant"

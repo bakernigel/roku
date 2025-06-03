@@ -403,8 +403,7 @@ class Roku:
         
         _LOGGER.debug("rokuecp.py Tune the channel: %s ", channel )
         
-#        await self.launch("779845", {"ch": channel})
-        await self.literal(channel)
+        await self.launch("tvinput.dtv", {"ch": channel, "chan": channel, "lcn": channel})
 
     async def _get_active_app(self) -> dict[str, Any]:
         """Retrieve active app for updates.

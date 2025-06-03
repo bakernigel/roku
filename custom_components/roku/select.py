@@ -80,15 +80,7 @@ async def _tune_channel(device: RokuDevice, roku: Roku, value: str) -> None:
 
     if _channel is not None:
         _LOGGER.debug("select.py Tune the channel %s", _channel.number )
-        if device.app.app_id != "779845":
-              _LOGGER.info("Roku - cannot tune TV channel unless app is Live TV. Current app=%s. Switching to Live TV", device.app.app_id)
-              await roku.launch("779845")
-              _LOGGER.debug("Starting sleep")
-              await asyncio.sleep(8)
-              _LOGGER.debug("Ending sleep")
-              await roku.tune(_channel.number)
-        else:      
-            await roku.tune(_channel.number)
+        await roku.tune(_channel.number)
 
 
 @dataclass(frozen=True, kw_only=True)
